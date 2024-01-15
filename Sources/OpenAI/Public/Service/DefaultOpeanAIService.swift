@@ -39,7 +39,8 @@ struct DefaultOpenAIService: OpenAIService {
       async throws -> AudioObject
    {
       let request = try OpenAIAPI.audio(.transcriptions).multiPartRequest(apiKey: apiKey, organizationID: organizationID, method: .post,  params: parameters)
-      return try await fetch(type: AudioObject.self, with: request)
+       var result = try await fetch(type: AudioObject.self, with: request)
+      return result
    }
    
    func createTranslation(
